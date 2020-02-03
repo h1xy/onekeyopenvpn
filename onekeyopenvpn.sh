@@ -16,18 +16,18 @@ yum -y install epel-release
 sed -i "s/enabled=0/enabled=1/" /etc/yum.repos.d/epel.repo
 
 #安装openvpn
-yum -y install openvpn-2.4.7-1.el7 easy-rsa-3.0.3-1.el7
+yum -y install openvpn-2.4.8-1.el7 easy-rsa-3.0.3-1.el7
 
 #复制easy到openvpn
 cp -rf /usr/share/easy-rsa/ /etc/openvpn/easy-rsa
 
 #复制server.conf
-cp -f /usr/share/doc/openvpn-2.4.7/sample/sample-config-files/server.conf /etc/openvpn/
+cp -f /usr/share/doc/openvpn-2.4.8/sample/sample-config-files/server.conf /etc/openvpn/
 
 #复制vars
-cp -f /usr/share/doc/easy-rsa-3.0.3/vars.example /etc/openvpn/easy-rsa/3.0.3/vars
+cp -f /usr/share/doc/easy-rsa-3.0.6/vars.example /etc/openvpn/easy-rsa/3.0.3/vars
 
-cd /etc/openvpn/easy-rsa/3.0.3/
+cd /etc/openvpn/easy-rsa/3.0.6/
 
 #生成ta.key
 openvpn --genkey --secret ta.key
@@ -43,15 +43,15 @@ openvpn --genkey --secret ta.key
 ./easyrsa gen-dh
 
 #管理证书位置
-cp /etc/openvpn/easy-rsa/3.0.3/pki/ca.crt /etc/openvpn/
-cp /etc/openvpn/easy-rsa/3.0.3/pki/issued/server.crt /etc/openvpn/
-cp /etc/openvpn/easy-rsa/3.0.3/pki/dh.pem /etc/openvpn/dh2048.pem
-cp /etc/openvpn/easy-rsa/3.0.3/pki/private/server.key /etc/openvpn/
-cp /etc/openvpn/easy-rsa/3.0.3/ta.key /etc/openvpn/
-cp /etc/openvpn/easy-rsa/3.0.3/pki/issued/client1.crt /etc/openvpn/client/
-cp /etc/openvpn/easy-rsa/3.0.3/ta.key /etc/openvpn/client/
-cp /etc/openvpn/easy-rsa/3.0.3/pki/ca.crt /etc/openvpn/client/
-cp /etc/openvpn/easy-rsa/3.0.3/pki/private/client1.key /etc/openvpn/client/
+cp /etc/openvpn/easy-rsa/3.0.6/pki/ca.crt /etc/openvpn/
+cp /etc/openvpn/easy-rsa/3.0.6/pki/issued/server.crt /etc/openvpn/
+cp /etc/openvpn/easy-rsa/3.0.6/pki/dh.pem /etc/openvpn/dh2048.pem
+cp /etc/openvpn/easy-rsa/3.0.6/pki/private/server.key /etc/openvpn/
+cp /etc/openvpn/easy-rsa/3.0.6/ta.key /etc/openvpn/
+cp /etc/openvpn/easy-rsa/3.0.6/pki/issued/client1.crt /etc/openvpn/client/
+cp /etc/openvpn/easy-rsa/3.0.6/ta.key /etc/openvpn/client/
+cp /etc/openvpn/easy-rsa/3.0.6/pki/ca.crt /etc/openvpn/client/
+cp /etc/openvpn/easy-rsa/3.0.6/pki/private/client1.key /etc/openvpn/client/
 
 #关闭firewalld
 systemctl stop firewalld
